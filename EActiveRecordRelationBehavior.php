@@ -378,7 +378,7 @@ class EActiveRecordRelationBehavior extends CActiveRecordBehavior
 	protected function getOldManyManyPks($relationName)
 	{
 		// @todo improve performance by doing simple select query instead of using AR
-		$tmpAr=CActiveRecord::model(get_class($this->owner))->findByPk($this->owner->getPrimaryKey());
+		$tmpAr=CActiveRecord::model(get_class($this->owner))->resetScope(true)->findByPk($this->owner->getPrimaryKey());
 		return $this->objectsToPrimaryKeys($tmpAr->getRelated($relationName, true));
 	}
 
